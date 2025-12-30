@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🚗 Car Rental Service</h1>
+            <div class="nav-links">
+                <button class="nav-btn active" onclick="showSection('cars')">Available Cars</button>
+                <button class="nav-btn" onclick="showSection('rentals')">My Rentals</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <!-- Available Cars Section -->
+    <section id="cars-section" class="section active">
+        <div class="section-header">
+            <h2>Available Cars</h2>
+            <button class="btn btn-primary" onclick="showAddCarModal()">+ Add Car</button>
+        </div>
+        <div id="cars-grid" class="cars-grid">
+            <div class="loading">Loading cars...</div>
+        </div>
+    </section>
+
+    <!-- My Rentals Section -->
+    <section id="rentals-section" class="section">
+        <div class="section-header">
+            <h2>My Rentals</h2>
+            <input type="email" id="search-email" placeholder="Enter your email to search rentals" class="input">
+            <button class="btn btn-primary" onclick="searchRentals()">Search</button>
+        </div>
+        <div id="rentals-list" class="rentals-list">
+            <p class="info-message">Enter your email to view your rentals</p>
+        </div>
+    </section>
+</main>
+
+<!-- Add Car Modal -->
+<div id="add-car-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddCarModal()">&times;</span>
+        <h2>Add New Car</h2>
+        <form id="add-car-form" onsubmit="addCar(event)">
+            <input type="text" id="car-brand" placeholder="Brand" required class="input">
+            <input type="text" id="car-model" placeholder="Model" required class="input">
+            <input type="number" id="car-year" placeholder="Year" required class="input">
+            <input type="text" id="car-color" placeholder="Color" required class="input">
+            <input type="number" id="car-rate" placeholder="Daily Rate ($)" step="0.01" required class="input">
+            <input type="text" id="car-plate" placeholder="License Plate" required class="input">
+            <input type="url" id="car-image" placeholder="Image URL" required class="input">
+            <button type="submit" class="btn btn-primary">Add Car</button>
+        </form>
+    </div>
+</div>
+
+<!-- Rent Car Modal -->
+<div id="rent-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeRentModal()">&times;</span>
+        <h2>Rent Car</h2>
+        <div id="rent-car-info"></div>
+        <form id="rent-form" onsubmit="rentCar(event)">
+            <input type="text" id="customer-name" placeholder="Full Name" required class="input">
+            <input type="email" id="customer-email" placeholder="Email" required class="input">
+            <input type="tel" id="customer-phone" placeholder="Phone" required class="input">
+            <input type="date" id="start-date" required class="input">
+            <input type="date" id="end-date" required class="input">
+            <div id="total-cost" class="total-cost"></div>
+            <button type="submit" class="btn btn-primary">Confirm Rental</button>
+        </form>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
